@@ -58,17 +58,18 @@
           PUID: 1000
           PGID: 1000
           VPN_ENABLED: yes
-          VPN_USER: vpnuser
-          VPN_PASS: vpnpass
           VPN_PROV: custom
-          ENABLE_PRIVOXY: no
-          STRICT_PORT_FORWARD: no
-          LAN_NETWORK: 192.168.1.1/24
+          ENABLE_PRIVOXY: 
+          STRICT_PORT_FORWARD: yes
+          LAN_NETWORK: 172.17.0.1/24
+          NAME_SERVERS: 209.222.18.222,37.235.1.174,1.1.1.1,8.8.8.8,209.222.18.218,37.235.1.177,1.0.0.1,8.8.4.4
 
     # MAIN DEPLOYMENT #############################################################
     - name: 'Deploying {{pgrole}}'
       docker_container:
         name: '{{pgrole}}'
+        cap_add:
+          - NET_ADMIN
         image: '{{image}}'
         pull: yes
         published_ports:
