@@ -30,12 +30,12 @@ You should be able to use the container name for anything on the same host (IE i
 Now go to https://grafana.yourdomain.com
 default username and password are admin/admin
 
-I recommend you change the default grafana password.
-Add influx as a datasource in grafana
+-I recommend you change the default grafana password.
+-Add influx as a datasource in grafana
 -URL should be http://influx:8086
 -Database is varken
 -your username and password you set up in the template
-
+-Import dashboard - https://grafana.com/dashboards/9585
 
 Like this and want to buy me a beer? I'm cool with that https://beerpay.io/benderstwin/benders-scripts
 Thanks!
