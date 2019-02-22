@@ -36,6 +36,13 @@ default username and password are admin/admin
 -Database is varken
 -your username and password you set up in the template
 -Import dashboard - https://grafana.com/dashboards/9585
+-Install dependency plugins
+```sudo docker exec -it grafana /bin/bash```
+paste in ```grafana-cli plugins install grafana-piechart-panel``` and ```grafana-cli plugins install grafana-worldmap-panel```
+
+Restart the container ```sudo docker restart grafana```
+
+
 
 Like this and want to buy me a beer? I'm cool with that https://beerpay.io/benderstwin/benders-scripts
 Thanks!
