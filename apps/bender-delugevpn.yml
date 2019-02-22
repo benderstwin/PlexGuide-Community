@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Title:      PlexGuide (Reference Title File)
-# Author(s):  Admin9705
+# Author(s):  Bender
 # URL:        https://plexguide.com - http://github.plexguide.com
 # GNU:        General Public License v3.0
 ################################################################################
@@ -55,20 +55,20 @@
     - name: 'Setting PG ENV'
       set_fact:
         pg_env:
-          PUID: 1000
-          PGID: 1000
-          VPN_ENABLED: yes
-          VPN_PROV: custom
-          ENABLE_PRIVOXY: 
-          STRICT_PORT_FORWARD: yes
-          LAN_NETWORK: 172.17.0.1/24
-          NAME_SERVERS: 209.222.18.222,37.235.1.174,1.1.1.1,8.8.8.8,209.222.18.218,37.235.1.177,1.0.0.1,8.8.4.4
+          PUID: '1000'
+          PGID: '1000'
+          VPN_ENABLED: 'yes'
+          VPN_PROV: 'custom'
+          ENABLE_PRIVOXY: 'yes'
+          STRICT_PORT_FORWARD: 'yes'
+          LAN_NETWORK: '172.18.0.1/24'
+          NAME_SERVERS: '209.222.18.222,37.235.1.174,1.1.1.1,8.8.8.8,209.222.18.218,37.235.1.177,1.0.0.1,8.8.4.4'
 
     # MAIN DEPLOYMENT #############################################################
     - name: 'Deploying {{pgrole}}'
       docker_container:
         name: '{{pgrole}}'
-        cap_add:
+        capabilities:
           - NET_ADMIN
         image: '{{image}}'
         pull: yes
