@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Title:      PlexGuide (Reference Title File)
+# Title:      PlexGuide (Influx)
 # Author(s):  Bender
 # URL:        https://plexguide.com - http://github.plexguide.com
 # GNU:        General Public License v3.0
@@ -11,13 +11,7 @@
 - name: Deploy InfluxDB
   hosts: localhost
   gather_facts: False
-  vars_prompt:
-  - name: "adminuser"
-    prompt: "influx admin username"
-    default: "influxdbadmin"
-  - name: "adminpass"
-    prompt: "admin password:"
-
+  
   tasks:  
     - stat: path=/opt/appdata/influx/influx.conf
       register: conf_result
