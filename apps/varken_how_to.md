@@ -27,6 +27,9 @@ sudo nano /opt/appdata/varken/varken.ini
 Instructions to configure varken.ini are not part of this howto but are located here https://github.com/Boerderij/Varken/wiki/Configuration
 You should be able to use the container name for anything on the same host (IE influx, ombi, sonarr etc...)
 
+Now go to https://grafana.yourdomain.com
+default username and password are admin/admin
+
 I recommend you change the default grafana password.
 Add influx as a datasource in grafana
 -URL should be http://influx:8086
