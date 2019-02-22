@@ -72,6 +72,14 @@
 #####  SET PERMS REQUIRED #######
     - name: 'Setting Permissions'
       shell: 'chown 472 -R /opt/appdata/{{pgrole}} && chgrp 472 -R /opt/appdata/{{pgrole}}'
+    - name: Restart {{pgrole}}
+      docker_container:
+        name: '{{pgrole}}'
+        state: stopped
+    - name: Restart {{pgrole}}
+      docker_container:
+        name: '{{pgrole}}'
+        state: started
 
   
 
