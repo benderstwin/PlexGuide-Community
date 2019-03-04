@@ -18,7 +18,7 @@ Do all of the following as root, or sudo
 4.  edit the telegraf.conf to add your influxdb username and password<br>
     ```nano /opt/appdata/telegraf.conf```<br>
     Look for these lines (around line 116)
-    ```## HTTP Basic Auth
+    ```"## HTTP Basic Auth"
         username = "telegraf"
         password = "metricsmetricsmetricsmetrics"
     ```
