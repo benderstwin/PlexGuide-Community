@@ -27,6 +27,7 @@ Do all of the following as root, or sudo
 
 5.  deploy bender-telegraf throuh plexguide community apps
 6.  add the datasource to grafana, import or create a dashboard, profit.
+    - When you add the data source, the URL is probably http://influx:8086 and the db name should be telegraf (database should be created for you already)
 
 Like this and want to buy me a beer? I'm cool with that https://beerpay.io/benderstwin/benders-scripts
 Thanks!
