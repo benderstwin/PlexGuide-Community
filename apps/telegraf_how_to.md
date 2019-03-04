@@ -20,7 +20,8 @@ Do all of the following as root, or sudo
     Look for these lines (around line 116)
     ```## HTTP Basic Auth
         username = "telegraf"
-        password = "metricsmetricsmetricsmetrics"```
+        password = "metricsmetricsmetricsmetrics"
+    ```
 
         Modify with your own influx username and password.  Save the file.
 
