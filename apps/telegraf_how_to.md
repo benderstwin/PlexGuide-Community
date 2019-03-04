@@ -2,7 +2,7 @@
 
 Do all of the following as root, or sudo
 
-1.  Create the directory /opt/appdata/telegraf
+1.  Create the directory /opt/appdata/telegraf<br>
     ```mkdir /opt/appdata/telegraf```
 
 2.  Change to the telegraf directory and download config<br>
@@ -16,7 +16,7 @@ Do all of the following as root, or sudo
     ```wget https://raw.githubusercontent.com/benderstwin/PlexGuide-Community/v8.4/apps/bender-telegraf.yml```
 
 4.  edit the telegraf.conf to add your influxdb username and password<br>
-    ```nano /opt/appdata/telegraf.conf```
+    ```nano /opt/appdata/telegraf.conf```<br>
     Look for these lines (around line 116)
     ```## HTTP Basic Auth
         username = "telegraf"
