@@ -1,0 +1,77 @@
+#!/bin/bash
+#
+# Title:      PlexGuide (Telegraf)
+# Author(s):  Bender (github.com/benderstwin)
+# URL:        https://plexguide.com - http://github.plexguide.com
+# GNU:        General Public License v3.0
+
+
+################################################################################
+---
+- name: Deploy Telegraf
+  hosts: localhost
+  gather_facts: False
+  tasks:  
+    
+    - name: 'Set Known Facts'
+      set_fact:
+        pgrole: 'telegraf'
+        image: 'telegraf:alpine'
+        intport: '8125'
+        extport: '8125'
+        
+# CORE (MANDATORY) ############################################################
+    - name: 'Including cron job'
+      include_tasks: '/opt/communityapps/apps/_core.yml'
+
+    - name: 'Including folders'
+      include_tasks: '/opt/communityapps/apps/_downloaders.yml'
+
+    - name: 'Checking for existing app data'
+      stat:
+        path: /opt/appdata/{{pgrole}}/telegraf.conf
+      register: confcheck
+    
+    - name: 'Adding Traefik'
+      set_fact:
+        pg_labels:
+          traefik.frontend.auth.forward.address: '{{gauth}}'
+          traefik.enable: 'true'
+          traefik.port: '{{intport}}'
+          traefik.frontend.rule: 'Host:{{pgrole}}.{{domain.stdout}},{{tldset}}'
+    
+    - name: 'Setting PG Volumes'
+      set_fact:
+        pg_volumes:
+          - '/opt/appdata/{{pgrole}}/telegraf.conf:/etc/telegraf/telegraf.conf'
+          - '/var/run/docker.sock:/var/run/docker.sock'
+          - '/:/rootfs'
+          - '/proc:/rootfs/proc'
+          - '/var/run/utmp:/var/run/utmp'
+#          - '/opt/appdata/{{pgrole}}/mibs:/etc/telegraf/mibs'
+        
+    
+    - name: 'Setting PG ENV'
+      set_fact:
+        pg_env:
+          HOST_PROC: /rootfs/proc
+          HOST_SYS: /rootfs/sys
+          HOST_ETC: /rootfs/etc
+
+#####  DEPLOY  ######################33    
+    - name: 'Deploying {{pgrole}}'
+      docker_container:
+        name: '{{pgrole}}'
+        image: '{{image}}'
+        pull: yes
+        volumes: '{{pg_volumes}}'
+        published_ports:
+          - '{{ports.stdout}}{{extport}}:{{intport}}'
+        env: '{{pg_env}}'
+        restart_policy: unless-stopped
+        labels: '{{pg_labels}}'
+        networks:
+          - name: plexguide
+            aliases:
+              - '{{pgrole}}'
+        state: started
