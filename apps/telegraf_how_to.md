@@ -7,12 +7,12 @@ Do all of the following as root, or sudo
 
 2.  Change to the telegraf directory and download config
     ```cd /opt/appdata/telegraf```
-    and
+    <br>
     ```wget https://raw.githubusercontent.com/benderstwin/PlexGuide-Community/v8.4/apps/telegraf.conf```
 
 3.  change to the mycontainers directory and download template
     ```cd /opt/mycontainers```
-    and
+    <br>
     ```wget https://raw.githubusercontent.com/benderstwin/PlexGuide-Community/v8.4/apps/bender-telegraf.yml```
 
 4.  edit the telegraf.conf to add your influxdb username and password
